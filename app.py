@@ -176,6 +176,12 @@ The candidate should have a background in Python, Generative AI, time series for
 
 def main():
     """Main application function."""
+
+    # add page title
+
+    st.set_page_config(page_title="GenAI CV Job Description Ranker",
+                       page_icon="🔍")
+
     st.title("GenAI CV Job Description Ranker")
     st.write(
         "Upload multiple CVs and get candidate rankings based on job description.")

@@ -176,14 +176,28 @@ The candidate should have a background in Python, Generative AI, time series for
 
 def main():
     """Main application function."""
-    st.title("CV Matching and Ranking App")
+    st.title("GenAI CV Job Description Ranker")
     st.write(
         "Upload multiple CVs and get candidate rankings based on job description.")
+
+    with st.expander("How it works"):
+        st.markdown('''This app uses Generative AI to evaluate how well a candidate matches a job description. It converts the CV content into vectors using Hugging Face embeddings, and then uses a language model to evaluate the match between the job description and the candidate's CV. The app ranks the candidates based on the matching score and provides a brief explanation for the score.''')
+        st.code('''
+            Based on the job description, evaluate how well the candidate {candidate_name} matches the requirements.
+            Provide a matching score between 0 and 100, where 100 means perfect match.
+            Job description: {query}
+            
+            Return ONLY a valid JSON object with this exact structure, without any explanation, markdown formatting, or code block indicators:
+            {{
+            "rating": <score between 0-100>,
+            "reason": "<brief explanation for the score>"
+            }} 
+            ''', language='markdown', wrap_lines=True)
 
     embedding_model = get_embedding_model()
 
     query = st.text_area("Enter job description",
-                         height=250, value=input_query)
+                         height=200, value=input_query)
     uploaded_files = st.file_uploader(
         "Choose CV files (Max 5)", type="pdf", accept_multiple_files=True)
 

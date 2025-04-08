@@ -6,3 +6,5 @@ python-dotenv
 streamlit
 pypdf==5.3.1
 sentence-transformers==4.0.2
+accelerate==1.6.0
+transformers==4.50.3

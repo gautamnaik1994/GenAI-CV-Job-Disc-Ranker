@@ -32,8 +32,12 @@ def init_llm():
 
 @st.cache_resource
 def get_embedding_model():
-    """Initialize and cache the embedding model."""
-    return HuggingFaceEmbeddings()
+    """Initialize and cache the embedding model.
+    Downloads the model if not already available locally."""
+    return HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        cache_folder="./models/embeddings"  # Local path to store the model
+    )
 
 
 def get_text_splitter():
